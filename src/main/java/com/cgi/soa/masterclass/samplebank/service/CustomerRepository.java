@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import com.cgi.soa.masterclass.samplebank.model.Customer;
 
 @Stateless
-public class DataAccessBean {
+public class CustomerRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
