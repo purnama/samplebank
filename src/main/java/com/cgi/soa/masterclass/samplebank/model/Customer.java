@@ -1,16 +1,21 @@
 package com.cgi.soa.masterclass.samplebank.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.eclipse.persistence.jpa.config.Cascade;
 
 @Entity
 @Table
@@ -19,19 +24,18 @@ public class Customer implements Serializable {
 	private static final long serialVersionUID = 8607105383730591827L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	
-	@Column
+
+	@Basic
+	@NotNull
 	private String firstName;
-	
-	@Column
+
+	@Basic
+	@NotNull
 	private String lastName;
-	
-	@OneToOne(mappedBy="customer")
-	private Address address;
-	
-	@OneToMany(mappedBy="customer")
+
+	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Account> accounts;
 
 	public Integer getId() {
@@ -58,15 +62,10 @@ public class Customer implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
 	public List<Account> getAccounts() {
+		if (accounts == null) {
+			accounts = new ArrayList<Account>();
+		}
 		return accounts;
 	}
 

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:hx="http://java.sun.com/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+	
+	
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:viewParam name="customer"  value="#{accountBean.customer}" required="true" converter="customerConverter" />
+		</f:metadata>
+	</ui:define>
+	<ui:define name="body">
+		<h1>#{msg['label.accounts.of']} #{accountBean.customer.firstName} #{accountBean.customer.lastName}</h1>
+		
+		<h:form>
+			<br />
+			<button class="btn btn-default" jsf:outcome="/accounts/create.xhtml">
+				<f:param value="#{accountBean.customer.id}" name="customer" />
+				<span class="glyphicon glyphicon-plus" /> #{msg['label.create.account']}
+			</button>
+			<br /><br />
+			<p:dataTable id="dataTable" var="account" value="#{accountBean.customer.accounts}">
+				<p:column sortBy="id" headerText="#{msg['label.account.number']}">
+					<h:outputText value="#{account.id}" />
+				</p:column>
+				<p:column sortBy="description" headerText="#{msg['label.account.description']}">
+					<h:outputText value="#{account.description}" />
+				</p:column>
+				<p:column sortBy="createDate" headerText="#{msg['label.account.createDate']}">
+					<h:outputText value="#{account.createDate}"  >
+						<f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss" />
+					</h:outputText>
+				</p:column>
+				<p:column sortBy="balance" headerText="#{msg['label.account.balance']}">
+					<h:outputText value="#{account.balance}" />
+				</p:column>
+				<p:column>
+					<h:link value="#{msg['label.transactions']}" outcome="/transactions" >
+						<f:param value="#{account.id}" name="account" />
+					</h:link>
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>
