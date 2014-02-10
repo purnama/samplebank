@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.Column;
+import javax.persistence.Basic;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
@@ -16,6 +16,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,8 +40,15 @@ public class Transaction implements Serializable {
 	@JoinColumn
 	private Account account;
 	
-	@Column
+	@Basic
 	private BigDecimal amount;
+	
+	@Basic
+	private String purpose;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn
+	private Account recipient;
 
 	public Integer getId() {
 		return id;
@@ -72,5 +80,21 @@ public class Transaction implements Serializable {
 
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
+	}
+
+	public String getPurpose() {
+		return purpose;
+	}
+
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
+	}
+
+	public Account getRecipient() {
+		return recipient;
+	}
+
+	public void setRecipient(Account recipient) {
+		this.recipient = recipient;
 	}
 }

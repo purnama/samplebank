@@ -9,14 +9,14 @@ import javax.inject.Named;
 
 import com.cgi.soa.masterclass.samplebank.model.Account;
 import com.cgi.soa.masterclass.samplebank.model.Customer;
-import com.cgi.soa.masterclass.samplebank.service.CustomerRepository;
+import com.cgi.soa.masterclass.samplebank.service.Repository;
 
 @Named
 @RequestScoped
 public class AccountBean {
 	
 	@Inject
-	CustomerRepository customerRepository;
+	Repository repository;
 	
 	Customer customer;
 	
@@ -27,7 +27,7 @@ public class AccountBean {
 		account.setCreateDate(Calendar.getInstance().getTime());
 		account.setCustomer(customer);
 		customer.getAccounts().add(account);
-		customer = customerRepository.merge(customer);
+		customer = repository.merge(customer);
 		return "/accounts/index.html?customer="+customer.getId();
 	}
 	

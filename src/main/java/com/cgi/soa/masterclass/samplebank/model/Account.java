@@ -2,6 +2,7 @@ package com.cgi.soa.masterclass.samplebank.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,26 +28,27 @@ public class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	@Temporal(TemporalType.DATE)
 	@NotNull
 	private Date createDate;
-	
+
 	@Basic
 	@NotNull
 	private String description;
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="CUSTOMER_ID")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CUSTOMER_ID")
 	private Customer customer;
 
 	@Basic
 	@NotNull
 	private BigDecimal balance;
 
-	@OneToMany(mappedBy="account")
+	@OneToMany(mappedBy = "account")
+	@OrderBy("date DESC")
 	private List<Transaction> transactions;
 
 	public Integer getId() {
@@ -89,6 +92,9 @@ public class Account implements Serializable {
 	}
 
 	public List<Transaction> getTransactions() {
+		if (transactions == null) {
+			transactions = new ArrayList<Transaction>();
+		}
 		return transactions;
 	}
 

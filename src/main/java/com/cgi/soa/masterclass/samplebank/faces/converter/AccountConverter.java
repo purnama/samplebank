@@ -6,23 +6,23 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 
-import com.cgi.soa.masterclass.samplebank.model.Customer;
+import com.cgi.soa.masterclass.samplebank.model.Account;
 import com.cgi.soa.masterclass.samplebank.service.Repository;
 
-@FacesConverter(value="customerConverter")
-public class CustomerConverter implements Converter {
+@FacesConverter(value="accountConverter")
+public class AccountConverter implements Converter {
 
 	@Inject
 	Repository repository;
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		return repository.findById(Integer.valueOf(value));
+		return repository.findAccountById(Integer.valueOf(value));
 	}
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		return ((Customer) value).getId().toString();
+		return ((Account) value).getId().toString();
 	}
 
 }

@@ -7,24 +7,24 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.cgi.soa.masterclass.samplebank.model.Customer;
-import com.cgi.soa.masterclass.samplebank.service.CustomerRepository;
+import com.cgi.soa.masterclass.samplebank.service.Repository;
 
 @Named
 @RequestScoped
 public class CustomerBean {
 
 	@Inject
-	CustomerRepository customerRepository;
+	Repository repository;
 	
 	Customer customer;
 	
 	public String create(){
-		customerRepository.persist(customer);
+		repository.persist(customer);
 		return "/customers/index.xhtml";
 	}
 	
 	public List<Customer> getCustomers(){
-		return customerRepository.getCustomers();
+		return repository.getCustomers();
 	}
 
 	public Customer getCustomer() {
