@@ -28,7 +28,7 @@ public class AccountBean {
 		account.setCustomer(customer);
 		customer.getAccounts().add(account);
 		customer = repository.merge(customer);
-		return "/accounts/index.html?customer="+customer.getId();
+		return "/accounts/index.html?faces-redirect=true&customer="+customer.getId();
 	}
 	
 	public Customer getCustomer(){

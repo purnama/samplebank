@@ -20,7 +20,7 @@ public class CustomerBean {
 	
 	public String create(){
 		repository.persist(customer);
-		return "/customers/index.xhtml";
+		return "/customers/index.xhtml?faces-redirect=true";
 	}
 	
 	public List<Customer> getCustomers(){
