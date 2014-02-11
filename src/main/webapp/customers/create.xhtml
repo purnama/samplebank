@@ -13,7 +13,7 @@
 		<h1>#{msg['label.create.customer']}</h1>
 		<form jsf:id="form">
 			<div class="form-group">
-				<label for="firstName">#{msg['label.firstName']}</label> <input
+				<label for="form:firstName">#{msg['label.firstName']}</label> <input
 					type="text" class="form-control"
 					jsf:value="#{customerBean.customer.firstName}" jsf:id="firstName"
 					required="required" jsf:required="true"
@@ -21,7 +21,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for="firstName">#{msg['label.lastName']}</label> <input
+				<label for="form:lastName">#{msg['label.lastName']}</label> <input
 					type="text" class="form-control"
 					jsf:value="#{customerBean.customer.lastName}" jsf:id="lastName"
 					required="required" jsf:required="true"

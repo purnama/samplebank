@@ -20,14 +20,14 @@
 			#{transactionBean.account.customer.firstName} #{transactionBean.account.customer.lastName}</h1>
 		<form jsf:id="form">
 			<div class="form-group">
-				<label for="purpose">#{msg['label.transaction.purpose']}</label>
+				<label for="form:purpose">#{msg['label.transaction.purpose']}</label>
 				<input type="text" class="form-control"
 					jsf:value="#{transactionBean.transaction.purpose}" jsf:id="purpose"
 					required="required" jsf:required="true"
 					placeholder="#{msg['label.placeholder.purpose']}" />
 			</div>
 			<div class="form-group">
-				<label for="amount">#{msg['label.transaction.amount']}</label>
+				<label for="form:amount">#{msg['label.transaction.amount']}</label>
 				<input type="text" class="form-control"
 					jsf:value="#{transactionBean.transaction.amount}" jsf:id="amount"
 					required="required" jsf:required="true"

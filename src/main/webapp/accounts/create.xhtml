@@ -20,7 +20,7 @@
 			#{accountBean.customer.firstName} #{accountBean.customer.lastName}</h1>
 		<form jsf:id="form">
 			<div class="form-group">
-				<label for="description">#{msg['label.account.description']}</label>
+				<label for="form:description">#{msg['label.account.description']}</label>
 				<input type="text" class="form-control"
 					jsf:value="#{accountBean.account.description}" jsf:id="description"
 					required="required" jsf:required="true"

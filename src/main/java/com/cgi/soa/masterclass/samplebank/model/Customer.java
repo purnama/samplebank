@@ -15,8 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.eclipse.persistence.jpa.config.Cascade;
-
 @Entity
 @Table
 public class Customer implements Serializable {
