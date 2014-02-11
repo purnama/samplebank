@@ -2,6 +2,7 @@ package com.cgi.soa.masterclass.samplebank.ws;
 
 import java.math.BigDecimal;
 
+import javax.inject.Inject;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
@@ -12,6 +13,7 @@ import com.cgi.soa.masterclass.samplebank.service.Repository;
 @WebService
 public class BankWeb {
 	
+	@Inject
 	private Repository repository;
 
 	@WebMethod
