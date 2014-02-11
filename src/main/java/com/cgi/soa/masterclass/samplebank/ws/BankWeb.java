@@ -28,6 +28,21 @@ public class BankWeb {
 	}
 	
 	@WebMethod
+	public boolean isAccountOwner(Integer accountNumber, String firstName, String lastName){
+		Account account = repository.findAccountById(accountNumber);
+		if(account == null){
+			return false;
+		}
+		
+		if(firstName.equals(account.getCustomer().getFirstName()) && lastName.equals(account.getCustomer().getLastName())){
+			return true;
+		}
+		
+		return false;
+			
+	}
+	
+	@WebMethod
 	public void transfer(Integer accountSender, Integer accountRecipient, String purpose, BigDecimal amount){
 		Account sender = repository.findAccountById(accountSender);
 		Account recipient = repository.findAccountById(accountRecipient);
