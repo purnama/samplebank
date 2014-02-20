@@ -20,11 +20,11 @@
 			<br /><br />
 			<p:dataTable id="dataTable" var="customer" value="#{customerBean.customers}">
 
-				<p:column sortBy="firstName" headerText="#{msg['label.firstName']}">
+				<p:column headerText="#{msg['label.firstName']}">
 					<h:outputText value="#{customer.firstName}" />
 				</p:column>
 
-				<p:column sortBy="lastName" headerText="#{msg['label.lastName']}">
+				<p:column headerText="#{msg['label.lastName']}">
 					<h:outputText value="#{customer.lastName}" />
 				</p:column>
 				<p:column>
