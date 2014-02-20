@@ -1,9 +1,5 @@
 package com.cgi.soa.masterclass.samplebank.faces;
 
-import java.math.BigDecimal;
-import java.util.Calendar;
-import java.util.Date;
-
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;

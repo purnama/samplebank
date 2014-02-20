@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -43,7 +44,7 @@ public class Account implements Serializable {
 	@JoinColumn(name = "CUSTOMER_ID")
 	private Customer customer;
 
-	@Basic
+	@Column(scale=2)
 	@NotNull
 	private BigDecimal balance;
 

@@ -53,6 +53,7 @@ public class Repository {
 	public Account transfer(Account account, Transaction transaction){
 		Date time = Calendar.getInstance().getTime();
 		BigDecimal amount = transaction.getAmount();
+		transaction.setAccount(account);
 		transaction.setDate(time);
 		transaction.setAmount(transaction.getAmount().multiply(BigDecimal.valueOf(-1)));
 		account.setBalance(account.getBalance().add(transaction.getAmount()));
@@ -72,6 +73,7 @@ public class Repository {
 	}
 	
 	public Account debit(Account account, Transaction transaction){
+		transaction.setAccount(account);
 		transaction.setDate(Calendar.getInstance().getTime());
 		transaction.setRecipient(account);
 		account.setBalance(account.getBalance().add(transaction.getAmount()));
